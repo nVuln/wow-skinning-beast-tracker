@@ -5,6 +5,7 @@
 ## Version: 1.0.0
 ## OptionalDeps: LibStub, LibDataBroker-1.1, LibDBIcon-1.0
 ## SavedVariables: SBT_Storage
+## X-Wago-ID: QKy9dlK7
 
 libs\load_libs.xml
 Utils.lua
