@@ -35,6 +35,17 @@
 - Use the minimap icon for quick access.
 - Data is saved in the `SBT_Storage` saved variable.
 
+## Screenshots
+
+### Minimap action button
+![Minimap action button](images/screenshot_1.png)
+
+### Unkilled boss of current character
+![Unkilled boss of current character](images/screenshot_2.png)
+
+### List of all skinning character in account
+![List of all skinning character in account](images/screenshot_3.png)
+
 ## Project Files
 
 - `Utils.lua` — helper functions for reset checks and character data updates.
