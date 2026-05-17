@@ -86,9 +86,19 @@ function UnkilledBossFrame:Update()
       btn:SetScript("OnEnter", function(self) self:SetBackdropColor(0.2,0.6,1,0.3) end)
       btn:SetScript("OnLeave", function(self) self:SetBackdropColor(0,0,0,0) end)
       btn:SetScript("OnClick", function()
-          if wp and TomTom and TomTom.AddWaypoint then
-            -- Clear waypoints first if needed or just add
-            TomTom:AddWaypoint(wp.mapID, wp.x, wp.y, { title = bossName, persistent = false })
+          if wp then
+            if C_Map and C_Map.ClearUserWaypoint and C_Map.SetUserWaypoint and UiMapPoint and UiMapPoint.CreateFromCoordinates then
+              C_Map.ClearUserWaypoint()
+              C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(wp.mapID, wp.x, wp.y))
+              if C_Map.SetSuperTrackedUserWaypoint then
+                C_Map.SetSuperTrackedUserWaypoint(true)
+              end
+            end
+
+            if TomTom and TomTom.AddWaypoint then
+              -- Keep TomTom as fallback/complement
+              TomTom:AddWaypoint(wp.mapID, wp.x, wp.y, { title = bossName, persistent = false })
+            end
           end
       end)
     end
