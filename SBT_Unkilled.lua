@@ -117,4 +117,31 @@ function UnkilledBossFrame:ToggleUI()
   end
 end
 
+local questEventFrame = CreateFrame("Frame")
+questEventFrame:RegisterEvent("QUEST_LOG_UPDATE")
+questEventFrame:SetScript("OnEvent", function()
+  if not UnkilledBossFrame:IsShown() then return end
+
+  local charName = UnitName("player").." - "..GetRealmName()
+  local db = _G[dbName]
+  local charData = db and db[charName]
+  local cachedQuests = charData and charData.quests
+  if not cachedQuests then return end
+
+  local changed = false
+  for _, q in ipairs(quests) do
+    local liveStatus = C_QuestLog.IsQuestFlaggedCompleted(q.id) or false
+    local cachedStatus = cachedQuests[q.id] or false
+    if liveStatus ~= cachedStatus then
+      changed = true
+      break
+    end
+  end
+
+  if changed then
+    UpdateCharacterData()
+    UnkilledBossFrame:Update()
+  end
+end)
+
 minimapContext.listFrame = UnkilledBossFrame
