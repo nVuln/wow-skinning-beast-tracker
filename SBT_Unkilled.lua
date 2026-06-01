@@ -90,8 +90,8 @@ function UnkilledBossFrame:Update()
             if C_Map and C_Map.ClearUserWaypoint and C_Map.SetUserWaypoint and UiMapPoint and UiMapPoint.CreateFromCoordinates then
               C_Map.ClearUserWaypoint()
               C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(wp.mapID, wp.x, wp.y))
-              if C_Map.SetSuperTrackedUserWaypoint then
-                C_Map.SetSuperTrackedUserWaypoint(true)
+              if C_SuperTrack.SetSuperTrackedUserWaypoint then
+                C_SuperTrack.SetSuperTrackedUserWaypoint(true)
               end
             end
 
